@@ -1,8 +1,9 @@
 from flask import Flask,render_template,request,redirect,url_for
 from flask_login import LoginManager, login_user, logout_user, login_required, UserMixin
 from src.entity.user import User
-from src.userLogic import UserLogic
-from src.itemLogic import ItemLogic
+from src.loginService import LoginService
+from src.managementService import ManagementService
+from src.attendanceService import AttendanceService
 
 app = Flask(__name__)
 
@@ -11,12 +12,13 @@ app.config.update({'DEBUG': True })
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "users.login"
-userLogic = UserLogic()
-itemLogic = ItemLogic()
+loginService = LoginService()
+managementService = ManagementService()
+attendanceService = AttendanceService()
 
 @login_manager.user_loader
 def load_user(user_id):
-    return userLogic.searchUser(user_id)
+    return loginService.searchUser(user_id)
 
 @app.route("/login")
 def login():
@@ -33,13 +35,18 @@ def loginAction():
 @app.route("/index")
 @login_required
 def index():
-    values = itemLogic.searchItemList()
+    values = managementService.searchItemList()
     # index.html をレンダリングする
     return render_template("index.html", values=values)
 
-@app.route("/hello")
-def hello():
-    return "Hello world!"
+
+@app.route("/attendance")
+def attendance():
+    '''
+    カードリーダーからの受信
+    '''
+    cardId = request.form["id"]
+    return attendanceService.existIdAndAttendance(cardId)
 
 if __name__ == "__main__":
     app.debug = True # デバッグモード有効化

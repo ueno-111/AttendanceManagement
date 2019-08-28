@@ -1,8 +1,9 @@
-
+import datetime
 
 class Item(object):
 
-    def __init__(self,item1="item1",item2="item2",item3="item3"):
-        self.item1=item1
-        self.item2=item2
-        self.item3=item3
+    def __init__(self, date, inout, name):
+        self.date=date
+        self.dateStr=self.date.strftime("%Y/%m/%d %H:%M:%S")
+        self.inout=inout
+        self.name=name
