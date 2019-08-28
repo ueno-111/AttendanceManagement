@@ -46,8 +46,8 @@ def attendance():
     '''
     カードリーダーからの受信
     '''
-    cardId = request.form["id"]
-    return attendanceService.existIdAndAttendance(cardId)
+    cardId = request.args.get("id")
+    return str(attendanceService.existIdAndAttendance(cardId))
 
 if __name__ == "__main__":
     app.debug = True # デバッグモード有効化
