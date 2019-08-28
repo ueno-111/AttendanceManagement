@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/static/dist/bootstrap/4.5.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="/static/dist/bootstrap/4.5.3/js/bootstrap.min.js"></script>
+    <script src="/static/dist/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="text-block">
+            <div class="text-center">
+                <h1>一覧</h1>
+            </div>
+            <div class="table-responsive px-5">
+                <table class="table table-striped text-center">
+                    <tr>
+                        <th>item1</th>
+                        <th>item2</th>
+                        <th>item3</th>
+                    </tr>
+                    {% for value in values %}
+                    <tr>
+                        <td>{{value.item1}}</td>
+                        <td>{{value.item2}}</td>
+                        <td>{{value.item3}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
