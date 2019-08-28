@@ -1,3 +1,4 @@
+# coding: UTF-8
 from flask import Flask,render_template,request,redirect,url_for
 from flask_login import LoginManager, login_user, logout_user, login_required, UserMixin
 from src.entity.user import User
