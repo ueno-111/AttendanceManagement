@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Jekyll v3.8.5">
+  <title>新規作成 画面</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="../static/dist/bootstrap/4.5.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="../static/dist/bootstrap/4.5.3/js/bootstrap.min.js"></script>
+  <script src="../static/dist/jquery/3.4.1/jquery.min.js"></script>
+
+  <!-- Custom styles for this template -->
+  <link href="../static/css/sign_up.css" rel="stylesheet">
+</head>
+
+<body class="text-center">
+  <form class="form-signin" method="POST" action="registerAction" >
+  
+    <h1 class="h3 mb-3 font-weight-normal">ユーザー登録</h1>
+    
+	<div class="form-group form-horizontal">
+	    <label class="control-label" for="inputUserNumber">社員番号</label>
+	    <input type="text" id="inputUserNumber" class="form-control" name="username" placeholder="User Number" required autofocus>
+	</div>
+	
+	<div class="form-group form-horizontal">
+	    <label class="control-label" for="inputUsername">ユーザー名</label>
+	    <input type="text" id="inputUsername" class="form-control" name="username" placeholder="User Name" required>
+	</div>
+	
+	<div class="form-group form-horizontal">
+	    <label class="control-label" for="inputPassword">パスワード</label>
+	    <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required>
+	</div>
+	   
+	    <button class="btn btn-lg btn-primary btn-block" type="submit">登録</button>
+  
+  </div>
+  </form>
+</body>
+
+</html>
