@@ -10,6 +10,7 @@ class ManagementService(object):
 
     def __init__(self):
         self.itemList = [
-            Item(datetime.datetime(2019, 8, 28, 9, 55, 28), "遅刻", datetime.datetime(2019, 8, 28, 9, 55, 28), datetime.datetime(2019, 8, 28, 17, 55, 28), "出勤", "memo")
+       Item(datetime.datetime(2019, 8, 28, 9, 55, 28), "遅刻", datetime.datetime(2019, 8, 28, 9, 55, 28), datetime.datetime(2019, 8, 28, 17, 55, 28), "出勤", "memo")]
+    
     def searchItemList(self):
         return self.itemList

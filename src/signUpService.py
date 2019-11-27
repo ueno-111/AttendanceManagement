@@ -20,25 +20,26 @@ class SignUpService(object):
     def registerAction(self, employeeNumber, username, password):
 
         # setting.iniから接続情報の取得
-        CONFIG_FILE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)) + "\\setting.ini")
+        CONFIG_FILE = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + "\\setting.ini"
 
-        print(CONFIG_FILE)
+        print("MYSQL接続設定ファイル : " + CONFIG_FILE)
 
-        # conf = configparser.SafeConfigParser()
-        # conf.read(CONFIG_FILE)
+        conf = configparser.SafeConfigParser()
+        conf.read(CONFIG_FILE)
 
-        # USERNAME = conf.get('connection', 'user')
-        # PASSWORD = conf.get('connection', 'password')
-        # SERVER   = conf.get('connection', 'server')
-        # DATABASE = conf.get('connection', 'database')
+        HOST     = conf.get('connection', 'host')
+        PORT     = conf.get('connection', 'port')
+        USERNAME = conf.get('connection', 'user')
+        PASSWORD = conf.get('connection', 'password')
+        DATABASE = conf.get('connection', 'database')
 
         # 接続する
         conn = mydb.connect(
-            host="35.209.236.130",
-            port='3306',
-            user='py',
-            passwd='pyPY0000/',
-            db='attendance')
+            host=HOST,
+            port=PORT,
+            user=USERNAME,
+            passwd=PASSWORD,
+            db=DATABASE)
 
         # コネクションが切れた時に再接続してくれるよう設定
         # conn.ping(reconnect=True)
