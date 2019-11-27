@@ -6,57 +6,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="../static/dist/bootstrap/4.5.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="../static/dist/jquery/3.4.1/jquery.min.js"></script>
-    <script src="../static/dist/bootstrap/4.5.3/js/bootstrap.min.js"></script>
+    <link href="/static/dist/bootstrap/4.5.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="/static/dist/bootstrap/4.5.3/js/bootstrap.min.js"></script>
+    <script src="/static/dist/jquery/3.4.1/jquery.min.js"></script>
 </head>
 
 <body>
-    <div class="container-fluid mt-2">
-        <div class="head">
-            <div class="clearfix">
-                <div class="float-left">
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="targetMonth" value="0" checked>
-                      <label class="form-check-label" for="radio1a">今月</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="targetMonth" value="1">
-                      <label class="form-check-label" for="radio1b">先月</label>
-                    </div>
-                </div>
-                <div class="float-right">
-                    <span>{{loginUserName}}さん</span>
-                    <a href="logout">ログアウト</a>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="container-fluid">
-        <div class="text-block mt-2">
-            <div class="table-responsive px-">
-                <div class="clearfix">
-                    <div class="float-right">
-                        <button class="btn btn-primary">登録</button>
-                    </div>
-                </div>
+        <div class="text-block">
+            <div class="text-center">
+                <input type ="radio" class ="month" name = "month" checked="true" />当月
+		<input type ="radio" class ="month" name = "month" />前月
+            </div>
+	<div>
+		<input type="button" value="登録" />
+	</div>
+            <div class="table-responsive px-5">
                 <table class="table table-striped text-center">
                     <tr>
-                        <th>日付</th>
-                        <th>区分</th>
-                        <th>出勤</th>
-                        <th>退勤</th>
-                        <th>業務内容</th>
+			<th>日付</th>
+			<th>区分</th>
+			<th>出勤時間</th>
+                        <th>退勤時間</th>
+                        <th>勤務内容</th>
                         <th>メモ</th>
                     </tr>
                     {% for value in values %}
                     <tr>
-                        <td><span>{{value.dateStr}}</span></td>
-                        <td><input type="text" class="form-control" size="4" name="" value="{{value.workType}}" /></td>
-                        <td><span>{{value.inTimeStr}}</span></td>
-                        <td><span>{{value.outTimeStr}}</span></td>
-                        <td><input type="text" class="form-control" size="12" name="" value="{{value.workContent}}" /></td>
-                        <td><input type="text" class="form-control" size="12" name="" value="{{value.memo}}" /></td>
+                        <td>{{value.date}}</td>
+                        <td>{{value.category}}</td>
+                        <td>{{value.inttime}}</td>
+                        <td>{{value.outtime}}</td>
+                        <td>{{value.content}}</td>
+                        <td>{{value.memo}}</td>
                     </tr>
                     {% endfor %}
                 </table>
