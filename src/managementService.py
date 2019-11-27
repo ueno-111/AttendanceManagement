@@ -1,6 +1,7 @@
 # coding: UTF-8
 from src.entity.item import Item
 import datetime
+#import mysql.connector
 
 class ManagementService(object):
     '''
