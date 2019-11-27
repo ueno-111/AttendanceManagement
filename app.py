@@ -5,6 +5,7 @@ from src.entity.user import User
 from src.loginService import LoginService
 from src.managementService import ManagementService
 from src.attendanceService import AttendanceService
+from src.signUpService import SignUpService
 
 app = Flask(__name__)
 
@@ -16,6 +17,7 @@ login_manager.login_view = "users.login"
 loginService = LoginService()
 managementService = ManagementService()
 attendanceService = AttendanceService()
+signUpService = SignUpService()
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -39,6 +41,20 @@ def index():
     values = managementService.searchItemList()
     # index.html をレンダリングする
     return render_template("index.html", values=values)
+
+@app.route("/createAction", methods=['GET', 'POST'])
+def createAction():
+    # sign_up.html をレンダリングする
+    return render_template("sign_up.html")
+
+@app.route("/registerAction", methods=['POST'])
+def registerAction():
+    employeeNumber = request.form["employeeNumber"]
+    username = request.form["username"]
+    password = request.form["password"]
+    signUpService.registerAction(employeeNumber, username, password)
+    # 登録後login.html をリダイレクトする
+    return redirect("login")
 
 
 @app.route("/attendance")

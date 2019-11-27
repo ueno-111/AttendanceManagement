@@ -1,5 +1,6 @@
 # coding: UTF-8
 from src.entity.user import User
+from flask import Flask, request
 
 class LoginService(object):
     '''
@@ -14,3 +15,4 @@ class LoginService(object):
         if username not in userDict:
             return
         return userDict[username]
+
