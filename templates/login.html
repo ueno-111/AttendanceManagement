@@ -16,6 +16,13 @@
 
   <!-- Custom styles for this template -->
   <link href="../static/css/login.css" rel="stylesheet">
+  <script type="text/javascript">
+    function submitAction(url) {
+      $('form').attr('action', url);
+      $('form').submit();
+}
+
+  </script>
 </head>
 
 <body class="text-center">
@@ -34,9 +41,10 @@
       <span>{{ errormessage }}</span>
     </div>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">新規作成</button>
+    <button class="btn btn-lg btn-primary btn-block" type="button" onclick="submitAction('/createAction')">新規作成</button>    
     <p class="mt-5 mb-3 text-muted">&copy; 2019-2019</p>
   </form>
+
 </body>
 
 </html>
