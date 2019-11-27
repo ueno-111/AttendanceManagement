@@ -49,16 +49,22 @@ class SignUpService(object):
         # カーソルを取得する
         cur = conn.cursor()
 
-        # SQL（データベースを操作するコマンド）を実行する
-        # レコードの登録
-        sql = 'insert into m_user (user_no, name, password) values (%s, %s, %s)'
-        c.execute(sql, (employeeNumber, username, password))  # 1件のみ
-        # datas = [
-        #     (2, 'foo'),
-        #     (3, 'bar')
-        # ]
-        # c.executemany(sql, datas)    # 複数件
-        # print('\n* レコードを3件登録\n')
+        try:
+            # SQL（データベースを操作するコマンド）を実行する
+            # レコードの登録
+            sql = 'insert into m_user (user_no, name, password, start_time, end_time, create_user, update_user) values (%s, %s, %s, "1000-01-01 00:00:00.000000", "9999-01-01 00:00:00.000000", "admin", "admin")'
+            cur.execute(sql, (employeeNumber, username, password))  # 1件のみ
+            # datas = [
+            #     (2, 'foo'),
+            #     (3, 'bar')
+            # ]
+            # c.executemany(sql, datas)    # 複数件
+            # print('\n* レコードを3件登録\n')
+            conn.commit()
+        except:
+            conn.rollback()
+            raise
+    
 
         cur.close
         conn.close
