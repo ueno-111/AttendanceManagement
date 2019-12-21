@@ -32,16 +32,16 @@
     <input type="text" id="inputUsername" class="form-control" name="username" placeholder="UserName" required autofocus>
     <label for="inputPassword" class="sr-only">Password</label>
     <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required>
-    <div class="checkbox mb-3">
+    <!-- <div class="checkbox mb-3">
       <label>
         <input type="checkbox" value="remember-me" name="rememberMe"> Remember me
       </label>
-    </div>
+    </div> -->
     <div class="mb-3 text-danger">
       <span>{{ errormessage }}</span>
     </div>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-    <button class="btn btn-lg btn-primary btn-block" type="button" onclick="submitAction('/createAction')">新規作成</button>    
+    <a class="btn btn-lg btn-primary btn-block" href="/createAction" >新規作成</a>    
     <p class="mt-5 mb-3 text-muted">&copy; 2019-2019</p>
   </form>
 
