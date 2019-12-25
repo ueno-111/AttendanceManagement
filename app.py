@@ -1,5 +1,5 @@
 # coding: UTF-8
-from flask import Flask,render_template,request,redirect,url_for
+from flask import Flask,render_template,request,redirect,url_for,session
 from flask_login import LoginManager, login_user, logout_user, login_required, UserMixin
 from src.entity.user import User
 from src.loginService import LoginService
@@ -19,21 +19,34 @@ managementService = ManagementService()
 attendanceService = AttendanceService()
 signUpService = SignUpService()
 
+@app.errorhandler(401)
+@app.errorhandler(500)
+def error_handller(error):
+    return render_template('login.html', errormessage=str(error.code) + " " + error.name), error.code
+
 @login_manager.user_loader
 def load_user(user_id):
     return loginService.searchUser(user_id)
 
 @app.route("/login")
 def login():
+    if 'errormessage' in session:
+        errormessage = session["errormessage"]
+        session.pop("errormessage", None)
+        return render_template("login.html", errormessage=errormessage)
     return render_template("login.html")
 
 @app.route("/loginAction", methods=['GET', 'POST'])
 def loginAction():
     username = request.form["username"]
     password = request.form["password"]
-    user = User(username,password)
-    login_user(user)
-    return redirect(request.args.get("next") or url_for("index"))
+    user = loginService.loginUser(username,password)
+    if user is not None:
+        login_user(user)
+        return redirect(request.args.get("next") or url_for("index"))
+    else:
+        session["errormessage"] = "ユーザーが存在しませんでした。"
+        return redirect("/login")
 
 @app.route("/index")
 @login_required
@@ -54,7 +67,7 @@ def registerAction():
     password = request.form["password"]
     signUpService.registerAction(employeeNumber, username, password)
     # 登録後login.html をリダイレクトする
-    return redirect("login")
+    return redirect("/login")
 
 
 @app.route("/attendance")
