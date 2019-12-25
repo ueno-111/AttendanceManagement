@@ -1,6 +1,6 @@
 # coding: UTF-8
 from flask import Flask,render_template,request,redirect,url_for,session
-from flask_login import LoginManager, login_user, logout_user, login_required, UserMixin
+from flask_login import LoginManager, login_user, logout_user, login_required, UserMixin,current_user
 from src.entity.user import User
 from src.loginService import LoginService
 from src.managementService import ManagementService
@@ -53,7 +53,7 @@ def loginAction():
 def index():
     values = managementService.searchItemList()
     # index.html をレンダリングする
-    return render_template("index.html", values=values)
+    return render_template("index.html", values=values, user=current_user)
 
 @app.route("/createAction", methods=['GET', 'POST'])
 def createAction():
