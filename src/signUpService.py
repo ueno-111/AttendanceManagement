@@ -14,9 +14,11 @@ class SignUpService(object):
 
     def registerAction(self, employeeNumber, username, password):
 
+        con = Connector()
+        def func():
                 sql = 'insert into m_user (user_no, name, password, create_user, update_user) values (%s, %s, %s, "admin", "admin")'
                 con.registerAction(sql, (employeeNumber, username, hashlib.sha256(password.encode('utf-8')).hexdigest()))
-                l = 'select user_id, user_no, name from m_user where name = %s'
+                sql = 'select user_id, user_no, name from m_user where name = %s'
                 user = con.selectOne(sql, (username,))
                 # カード登録用レコード登録
                 sql = 'insert into m_card (user_id, create_user, update_user) values (%s, "admin", "admin")'
