@@ -1,7 +1,7 @@
 # coding: UTF-8
 from src.entity.item import Item
+#from src.connector import Connector
 import datetime
-#import mysql.connector
 
 class ManagementService(object):
     '''
@@ -14,3 +14,9 @@ class ManagementService(object):
     
     def searchItemList(self):
         return self.itemList
+
+    def searchItemList2(self,userId):
+        con = Connector()
+        sql = 'SELECT target_date,category,in_time,out_time,work_context,memo FROM t_attendance WHERE user_id = "useriId"'
+        return con.selectAll(sql)
+        # return self.itemList

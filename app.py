@@ -52,6 +52,7 @@ def loginAction():
 @login_required
 def index():
     values = managementService.searchItemList()
+    # values = managementService.searchItemList2(current_user)
     # index.html をレンダリングする
     return render_template("index.html", values=values, user=current_user)
 
@@ -64,8 +65,9 @@ def createAction():
 def registerAction():
     employeeNumber = request.form["employeeNumber"]
     username = request.form["username"]
+    userid = request.form["userid"]
     password = request.form["password"]
-    signUpService.registerAction(employeeNumber, username, password)
+    signUpService.registerAction(employeeNumber, username, userid, password)
     # 登録後login.html をリダイレクトする
     return redirect("/login")
 
