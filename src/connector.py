@@ -19,6 +19,7 @@ class Connector(object):
     conf = configparser.SafeConfigParser()
     conf.read(CONFIG_FILE)
 
+    AUTH     = conf.get('connection', 'auth_plugin')
     HOST     = conf.get('connection', 'host')
     PORT     = conf.get('connection', 'port')
     USERNAME = conf.get('connection', 'user')
@@ -26,6 +27,7 @@ class Connector(object):
     DATABASE = conf.get('connection', 'database')
     # 接続する
     conn = mydb.connect(
+        auth_plugin=AUTH,
         host=HOST,
         port=PORT,
         user=USERNAME,
