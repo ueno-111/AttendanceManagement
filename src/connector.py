@@ -51,8 +51,9 @@ class Connector(object):
     def transactionAction(self, func):
         self.auto_commit = False
         try:
-            func()
+            result = func()
             Connector.conn.commit()
+            return result
         except:
             Connector.conn.rollback()
             raise
@@ -78,7 +79,7 @@ class Connector(object):
 
         return data
 
-    def selectOne(self, sql, data):
+    def selectOne(self, sql, data = ()):
 
         self.cur.execute(sql, data)
         data = self.cur.fetchone()

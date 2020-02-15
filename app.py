@@ -51,7 +51,7 @@ def loginAction():
 @app.route("/index")
 @login_required
 def index():
-    values = managementService.searchItemList()
+    values = managementService.searchItemList(current_user.user_no)
     # values = managementService.searchItemList2(current_user)
     # index.html をレンダリングする
     return render_template("index.html", values=values, user=current_user)
