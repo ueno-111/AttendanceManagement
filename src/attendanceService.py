@@ -49,7 +49,7 @@ class AttendanceService(object):
         if(attendance['out_time'] is None):
             # 本日付けの出勤データがある場合は退勤データをupdate
             sql = 'update t_attendance set out_time = %s, update_user = %s where attendance_id = %s'
-            con.registerAction(sql, (card['user_id'], time.strftime('%H:%M:%S'), 'admin', attendance['attendance_id']))
+            con.registerAction(sql, (time.strftime('%H:%M:%S'), 'admin', attendance['attendance_id']))
             return 1
         
         # すでに本日付の出退勤データがある場合は０を返す
